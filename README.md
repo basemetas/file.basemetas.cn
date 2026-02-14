@@ -1,69 +1,27 @@
-# React + TypeScript + Vite
+# BaseMetas Fileview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 新一代通用型在线文件预览引擎
 
-Currently, two official plugins are available:
+#### 全格式覆盖，一套能力支撑所有文档场景
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+支持 Office、PDF、OFD 及 CAD、图片、代码文件、流程图、思维导图等数百种格式，统一预览入口，屏蔽格式差异，满足 OA、档案、网盘、IM、审批流等复杂业务场景需求。
 
-## Expanding the ESLint configuration
+#### 快速接入，轻量级开发
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+通过标准化接口即可快速接入文档预览服务，无需复杂改造，只需少量代码即可完成集成，显著降低开发成本，缩短上线周期。
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+#### 跨平台多终端适配
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+支持 PC 与 H5 多终端访问，兼容主流浏览器环境，文档内容可根据不同终端智能适配与重排，满足桌面端与移动端的统一在线预览需求。
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+#### 无依赖、零插件
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+无需依赖本地 Office 环境，也无需安装任何浏览器插件，即可通过浏览器实现文档在线预览，部署与使用更加轻量、可靠。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 站点
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+https://fileview.basemetas.cn
+
+## 在线体验
+
+https://file.basemetas.cn
