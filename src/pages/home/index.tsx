@@ -1,5 +1,7 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Base64 } from "js-base64";
+import { Dropdown, Menu } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
 
 import "./index.css";
 
@@ -17,7 +19,41 @@ export default function Home() {
   const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [activeMenu, setActiveMenu] = useState("home");
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const pageSize = 15;
+
+  // 监听窗口大小变化
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // 导航菜单数据
+  const navItems = [
+    { key: "home", label: "首页", url: "https://fileview.basemetas.cn/" },
+    { key: "product", label: "产品介绍", url: "https://fileview.basemetas.cn/docs/product/summary" },
+    { key: "formats", label: "支持格式", url: "https://fileview.basemetas.cn/docs/product/formats" },
+    { key: "github", label: "开源地址", url: "https://github.com/basemetas/fileview" },
+  ];
+
+  // 移动端下拉菜单
+  const mobileMenu = (
+    <Menu>
+      {navItems.map((item, index) => (
+        <React.Fragment key={item.key}>
+          <Menu.Item
+            onClick={() => handleNavigate(item.url)}
+          >
+            {item.label}
+          </Menu.Item>
+          {index < navItems.length - 1 && <Menu.Divider />}
+        </React.Fragment>
+      ))}
+    </Menu>
+  );
 
   const documents: DocumentItem[] = data;
 
@@ -211,44 +247,28 @@ export default function Home() {
       <nav className="top-nav">
         <div className="nav-content">
           <div className="nav-brand">BaseMetas 文件预览在线体验</div>
-          <div className="nav-menu">
-            <button
-              className={`nav-item`}
-              onClick={() => handleNavigate("https://fileview.basemetas.cn/")}
-            >
-              首页
-            </button>
-            <button
-              className={`nav-item`}
-              onClick={() =>
-                handleNavigate(
-                  "https://fileview.basemetas.cn/docs/product/summary"
-                )
-              }
-            >
-              产品介绍
-            </button>
-            <button
-              className={`nav-item`}
-              onClick={() =>
-                handleNavigate(
-                  "https://fileview.basemetas.cn/docs/product/formats"
-                )
-              }
-            >
-              支持格式
-            </button>
-            <button
-              className={`nav-item`}
-              onClick={() =>
-                handleNavigate(
-                  "https://github.com/basemetas/fileview"
-                )
-              }
-            >
-              开源地址
-            </button>
-          </div>
+          {isMobile ? (
+            <Dropdown overlay={mobileMenu} trigger={["click"]}>
+              <button className="nav-hamburger">
+                <MenuOutlined />
+              </button>
+            </Dropdown>
+          ) : (
+            <div className="nav-menu">
+              {navItems.map((item) => (
+                <button
+                  key={item.key}
+                  className={`nav-item ${activeMenu === item.key ? "active" : ""}`}
+                  onClick={() => {
+                    setActiveMenu(item.key);
+                    handleNavigate(item.url);
+                  }}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </nav>
 

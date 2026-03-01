@@ -66,6 +66,49 @@ body {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.nav-hamburger:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 767px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-brand {
+    font-size: 16px;
+  }
+}
+
+/* 移动端下拉菜单样式 */
+.nav-hamburger + .ant-dropdown-menu {
+  padding: 8px;
+}
+
+.nav-hamburger + .ant-dropdown-menu .ant-dropdown-menu-item {
+  padding: 16px 28px;
+  font-size: 18px;
+  border-radius: 8px;
+}
+
 .remote-file-input {
   display: flex;
   gap: 12px;
