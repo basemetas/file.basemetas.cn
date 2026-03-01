@@ -11,6 +11,8 @@ interface DocumentItem {
   id: string;
   name: string;
   type: "ppt" | "excel" | "word" | "flow" | "zip" | "text" | "image" | "other";
+  path?: string;
+  url?: string;
 }
 
 export default function Home() {
@@ -55,7 +57,7 @@ export default function Home() {
     </Menu>
   );
 
-  const documents: DocumentItem[] = data;
+  const documents: DocumentItem[] = data as DocumentItem[];
 
   const getIconColor = (type: string) => {
     switch (type) {
@@ -219,7 +221,7 @@ export default function Home() {
   // 预览远程文件
   const handleOpenRemoteFile = () => {
     if (validateUrl(fileUrl)) {
-      handleDocumentClick({ url: fileUrl });
+      handleDocumentClick({ id: "remote", name: "远程文件", type: "other", url: fileUrl });
     }
   };
 
