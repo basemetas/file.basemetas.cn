@@ -25,3 +25,7 @@ https://fileview.basemetas.cn
 ## 在线体验
 
 https://file.basemetas.cn
+
+## 开源地址
+
+https://github.com/basemetas/fileview
